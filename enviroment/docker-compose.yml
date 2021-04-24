@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: ./db.Dockerfile
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: notSecureChangeMe
+      DB_DATABASE: DB1
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
